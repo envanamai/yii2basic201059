@@ -38,13 +38,27 @@ AppAsset::register($this);
     ]);
         $setting=[
         ['label' => 'สถานะคอมพิวเตอร์', 'url' => ['/comstatus']],
+        ['label' => 'ประเภทคอมพิวเตอร์', 'url' => ['/comstatus']],
     ];
+        $regist=[
+        ['label' => 'ทะเบียนคอมพิวเตอร์', 'url' => ['/com']],
+
+    ];     
+        $report=[
+        ['label' => 'รายงานคอมพิวเตอร์', 'url' => ['/reportcomtype']],
+        ['label' => 'รายงานปัญหาคอมพิวเตอร์', 'url' => ['/reportcomservice']],
+        ['label' => 'กราฟสรุปรายงานจำนวนคอมพิวเตอร์', 'url' => ['/chartcom']],
+
+    ];    
+ 
     
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'encodeLabels'=>false,
         'items' => [
             ['label' => '<span class ="glyphicon glyphicon-home"></span> หน้าแรก', 'url' => ['/site/index']],
+            ['label' => 'ลงทะเบียน', 'items' => $regist],
+            ['label' => 'ระบบรายงาน', 'items' => $report],
             ['label' => '<span class ="glyphicon glyphicon-cloud"></span> เกี่ยวกับ', 'url' => ['/site/about']],
             ['label' => '<span class ="glyphicon glyphicon-tint"></span> ติดต่อ', 'url' => ['/site/contact']],
             ['label' => '<span class ="glyphicon glyphicon-tint"></span> ทดสอบ', 'url' => ['/first1/index']],
