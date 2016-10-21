@@ -48,6 +48,7 @@ AppAsset::register($this);
         ['label' => 'รายงานคอมพิวเตอร์', 'url' => ['/reportcomtype']],
         ['label' => 'รายงานปัญหาคอมพิวเตอร์', 'url' => ['/reportcomservice']],
         ['label' => 'กราฟสรุปรายงานจำนวนคอมพิวเตอร์', 'url' => ['/chartcom']],
+        ['label' => 'รายงานประเภทคอมพิวเตอร์ (pdf)', 'url' => ['/pdftest']],
 
     ];    
  
@@ -57,19 +58,19 @@ AppAsset::register($this);
         'encodeLabels'=>false,
         'items' => [
             ['label' => '<span class ="glyphicon glyphicon-home"></span> หน้าแรก', 'url' => ['/site/index']],
-            ['label' => 'ลงทะเบียน', 'items' => $regist],
+            ['label' => 'ลงทะเบียน', 'items' => $regist,'visible'=>Yii::$app->session->has('username')],
             ['label' => 'ระบบรายงาน', 'items' => $report],
             ['label' => '<span class ="glyphicon glyphicon-cloud"></span> เกี่ยวกับ', 'url' => ['/site/about']],
             ['label' => '<span class ="glyphicon glyphicon-tint"></span> ติดต่อ', 'url' => ['/site/contact']],
             ['label' => '<span class ="glyphicon glyphicon-tint"></span> ทดสอบ', 'url' => ['/first1/index']],
             ['label' => 'ตั้งค่าระบบ', 'items' => $setting],
-            Yii::$app->user->isGuest ? (
+            !Yii::$app->session->get('username') ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    'Logout (' . Yii::$app->session->get('username') . ')',
                     ['class' => 'btn btn-link']
                 )
                 . Html::endForm()
